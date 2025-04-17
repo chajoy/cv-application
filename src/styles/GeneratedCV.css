@@ -21,6 +21,23 @@
     gap: 20px;
   }
 
+  .education {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    .dates {
+      display: flex;
+      gap: 10px;
+      grid-row: span 2;
+      justify-self: end;
+    }
+
+    .inst {
+      font-weight: bold;
+    }
+  }
+
   hr {
     border: 1px solid black;
   }

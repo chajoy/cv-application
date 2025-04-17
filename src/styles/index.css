@@ -3,6 +3,7 @@
   --dark: #202020;
   --base: #2e2e2e;
   --highlight: #5a5a5a;
+  --accent: #475f8e;
 
   --large: 2rem;
 }
@@ -45,6 +46,21 @@ select {
   font: inherit;
 }
 
+button {
+  background-color: var(--accent);
+  color: inherit;
+  font-family: inherit;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  outline: 1px solid transparent;
+  transition: filter 0.2s;
+}
+
+button:hover {
+  filter: brightness(1.2);
+}
+
 p,
 h1,
 h2,
@@ -85,8 +101,12 @@ textarea {
   outline: 1px solid transparent;
 }
 
-textarea:focus {
+textarea:hover {
   outline: 1px solid var(--highlight);
+}
+
+textarea:focus {
+  outline: 1px solid var(--accent);
 }
 
 input {
@@ -100,8 +120,12 @@ input {
   outline: 1px solid transparent;
 }
 
-input:focus {
+input:hover {
   outline: 1px solid var(--highlight);
+}
+
+input:focus {
+  outline: 1px solid var(--accent);
 }
 
 #root,
@@ -117,13 +141,21 @@ h1 {
 .sidebar {
   background: var(--dark);
   outline: 1px solid var(--base);
-  min-height: calc(100vh - 40px);
   width: 500px;
   padding: 20px;
+  height: calc(100vh - 40px);
   margin: 20px;
   display: grid;
   grid-auto-rows: min-content;
   gap: 20px;
+  overflow-y: auto;
+
+  .dates {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) auto;
+    gap: 20px;
+    color-scheme: dark;
+  }
 }
 
 .app-container {
