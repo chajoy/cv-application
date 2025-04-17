@@ -149,6 +149,8 @@ h1 {
   grid-auto-rows: min-content;
   gap: 20px;
   overflow-y: auto;
+  scrollbar-color: var(--highlight) var(--base);
+  scrollbar-width: thin;
 
   .dates {
     display: grid;
