@@ -21,8 +21,9 @@
     gap: 20px;
   }
 
-  .education {
+  .experience {
     display: grid;
+    gap: 10px;
     grid-template-columns: 1fr 1fr;
     align-items: center;
 
@@ -33,9 +34,13 @@
       justify-self: end;
     }
 
-    .inst {
-      font-weight: bold;
+    .description {
+      grid-column: span 2;
     }
+  }
+
+  .experience > p:first-child {
+    font-weight: bold;
   }
 
   hr {

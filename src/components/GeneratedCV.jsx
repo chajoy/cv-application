@@ -32,21 +32,22 @@ function AboutMe({ about }) {
   );
 }
 
-function Education({ education }) {
+function Experience({ data }) {
   return (
     <>
-      <h2 className="heading">Education</h2>
+      <h2 className="heading">{data.title}</h2>
       <hr />
-      {education.map((edu, i) => {
+      {data.data.map((d, i) => {
         return (
-          <div className="education" key={i}>
-            <p className="inst">{edu.institution}</p>
+          <div className="experience" key={i}>
+            <p className="inst">{d[data.fieldNames[1]]}</p>
             <div className="dates">
-              <p>{edu.start && formatDate(edu.start)}</p>
-              {edu.start && edu.end ? " - " : ""}
-              <p>{edu.end && formatDate(edu.end)}</p>
+              <p>{d.start && formatDate(d.start)}</p>
+              {d.start && d.end ? " - " : ""}
+              <p>{d.end && formatDate(d.end)}</p>
             </div>
-            <p className="qual">{edu.qualification}</p>
+            <p className="qual">{d[data.fieldNames[0]]}</p>
+            {d.description && <p className="description">{d.description}</p>}
           </div>
         );
       })}
@@ -54,12 +55,13 @@ function Education({ education }) {
   );
 }
 
-export default function GeneratedCV({ contact, about, education }) {
+export default function GeneratedCV({ contact, about, education, experience }) {
   return (
     <div className="gcv-page">
       {contact && <Contact contact={contact} />}
       {about && <AboutMe about={about} />}
-      {education.length > 0 && <Education education={education} />}
+      {education.data.length > 0 && <Experience data={education} />}
+      {experience.data.length > 0 && <Experience data={experience} />}
     </div>
   );
 }
