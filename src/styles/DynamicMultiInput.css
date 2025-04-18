@@ -1,0 +1,13 @@
+.inputHeading {
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    height: 100%;
+    transition: transform 0.3s;
+  }
+
+  .active {
+    transform: rotateZ(180deg);
+  }
+}

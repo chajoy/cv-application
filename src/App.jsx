@@ -83,6 +83,7 @@ export default function App() {
         <h1 className="title">QuickCV</h1>
         <InputField inputs={inputs_generalInfo} />
         <hr />
+        <h3>About Me</h3>
         <textarea
           value={aboutMe}
           onChange={(e) => setAbout(e.target.value)}
@@ -95,6 +96,7 @@ export default function App() {
           setData={setEducation}
           hasTextBox={false}
         />
+
         <DynamicMultiInput
           data={experience}
           setData={setExperience}

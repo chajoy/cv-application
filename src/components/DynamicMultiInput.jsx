@@ -1,3 +1,20 @@
+import { useState } from "react";
+import "../styles/DynamicMultiInput.css";
+
+function Heading({ title, isActive, setActive }) {
+  return (
+    <div className="inputHeading">
+      <h3>{title}</h3>
+      <img
+        className={`dropdownBtn ${isActive}`}
+        onClick={() => setActive(isActive === "hidden" ? "active" : "hidden")}
+        src="caret-down-fill.svg"
+        alt="dropdown icon"
+      />
+    </div>
+  );
+}
+
 function InputFields({
   data,
   index,
@@ -71,40 +88,51 @@ function InputFields({
 }
 
 export default function DynamicMultiInput({ data, setData, hasTextBox }) {
+  const [isActive, setActive] = useState("hidden");
+
   return (
     <>
-      {data.data.map((d, i) => {
-        return (
-          <InputFields
-            data={d}
-            index={i}
-            key={i}
-            setData={setData}
-            stateData={data}
-            fieldNames={data.fieldNames}
-            hasTextBox={hasTextBox}
-          />
-        );
-      })}
-      <button
-        onClick={() =>
-          setData((prev) => ({
-            title: prev.title,
-            fieldNames: prev.fieldNames,
-            data: [
-              ...prev.data,
-              {
-                [data.fieldNames[0]]: "",
-                [data.fieldNames[1]]: "",
-                start: "",
-                end: "",
-              },
-            ],
-          }))
-        }
-      >
-        Add {data.title}
-      </button>
+      {data.data.length > 0 && (
+        <Heading title={data.title} isActive={isActive} setActive={setActive} />
+      )}
+
+      {isActive === "active" && (
+        <>
+          {data.data.map((d, i) => {
+            return (
+              <InputFields
+                data={d}
+                index={i}
+                key={i}
+                setData={setData}
+                stateData={data}
+                fieldNames={data.fieldNames}
+                hasTextBox={hasTextBox}
+              />
+            );
+          })}
+
+          <button
+            onClick={() =>
+              setData((prev) => ({
+                title: prev.title,
+                fieldNames: prev.fieldNames,
+                data: [
+                  ...prev.data,
+                  {
+                    [data.fieldNames[0]]: "",
+                    [data.fieldNames[1]]: "",
+                    start: "",
+                    end: "",
+                  },
+                ],
+              }))
+            }
+          >
+            Add {data.title}
+          </button>
+        </>
+      )}
     </>
   );
 }
